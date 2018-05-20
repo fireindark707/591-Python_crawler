@@ -10,14 +10,13 @@ Created on Mon Apr  2 21:08:05 2018
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import bs4
 
 driver = webdriver.Chrome()
 
 driver.get("https://rent.591.com.tw/?kind=0&region=1")
 html = driver.page_source
 
-page = BeautifulSoup(html,"lxml")
+page = BeautifulSoup(html, "lxml")
 nameList = page.findAll("h3")
 
 url_list = []
@@ -25,4 +24,7 @@ for name in nameList:
     url = name.a.attrs["href"]
     url_list.append(url)
     print(url)
+<<<<<<< HEAD
     
+=======
+>>>>>>> e6d3e4fd50eb35c6425c58deb542e99bde2b1d77
