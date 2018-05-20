@@ -30,6 +30,7 @@ for num in range(1,10):
     html = driver.page_source
     page = BeautifulSoup(html, "lxml")
     nameList = page.findAll("h3")
+    #等待，確保class有出來，但是好像沒什麼用
     wait = WebDriverWait(driver, 10)
     element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'pageNext')))
     driver.execute_script("arguments[0].click();", element)
