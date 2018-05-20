@@ -1,30 +1,35 @@
 import urllib3
+import pickle
 from bs4 import BeautifulSoup
 
 http = urllib3.PoolManager()
 
-url = "https://rent.591.com.tw/rent-detail-6308664.html"
+url_list = pickle.load(open("./data/url_list_5_20.dat", "rb"))
 
-response = http.request('GET', url)
-soup = BeautifulSoup(response.data, "lxml")
+length = len(url_list)
 
-price_box = soup.find('div', attrs={'class': 'price clearfix'})
-price_box = price_box.i
-price_box.b.unwrap()
-# price = price_box.string.extract()
+for i in range(0, length):
+    response = http.request('GET', url_list[i])
+    soup = BeautifulSoup(response.data, "lxml")
 
-explain_box = soup.find('ul', attrs={'class': 'attr'})
-# explain_box = explain_box.li
+    price_box = soup.find('div', attrs={'class': 'price clearfix'})
+    price_box = price_box.get_text()
 
-address_box = soup.find('span', attrs={'class': 'addr'})
+    explain_box = soup.find('ul', attrs={'class': 'attr'})
+    explain_box = explain_box.get_text()
 
-condtion_box = soup.find('ul', attrs={'class': 'clearfix labelList labelList-1'})
+    address_box = soup.find('span', attrs={'class': 'addr'})
+    address_box = address_box.get_text()
 
-facility_box = soup.find('ul', attrs={'class': 'facility clearfix'})
+    condtion_box = soup.find('ul', attrs={'class': 'clearfix labelList labelList-1'})
+    condtion_box = condtion_box.get_text()
 
-print("--------------------------------------------------------")
-print(price_box)
-print(explain_box)
-print(address_box)
-print(condtion_box)
-print(facility_box)
+    facility_box = soup.find('ul', attrs={'class': 'facility clearfix'})
+    facility_box = facility_box.get_text()
+
+    print("--------------------------------------------------------")
+    print(price_box)
+    print(explain_box)
+    print(address_box)
+    print(condtion_box)
+    print(facility_box)
