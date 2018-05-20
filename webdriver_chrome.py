@@ -22,5 +22,6 @@ nameList = page.findAll("h3")
 url_list = []
 for name in nameList:
     url = name.a.attrs["href"]
+    url = url.strip()
     url_list.append(url)
     print(url)
