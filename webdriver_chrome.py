@@ -12,7 +12,6 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import bs4
 
-
 driver = webdriver.Chrome()
 
 driver.get("https://rent.591.com.tw/?kind=0&region=1")
@@ -26,5 +25,4 @@ for name in nameList:
     url = name.a.attrs["href"]
     url_list.append(url)
     print(url)
-
     
