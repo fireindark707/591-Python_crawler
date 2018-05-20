@@ -24,7 +24,3 @@ for name in nameList:
     url = name.a.attrs["href"]
     url_list.append(url)
     print(url)
-<<<<<<< HEAD
-    
-=======
->>>>>>> e6d3e4fd50eb35c6425c58deb542e99bde2b1d77
