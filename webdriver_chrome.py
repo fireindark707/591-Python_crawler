@@ -30,12 +30,14 @@ for num in range(1,10):
     html = driver.page_source
     page = BeautifulSoup(html, "lxml")
     nameList = page.findAll("h3")
+    #等待，確保class有出來，但是好像沒什麼用
     wait = WebDriverWait(driver, 10)
     element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'pageNext')))
     driver.execute_script("arguments[0].click();", element)
 
     for name in nameList:
         url = name.a.attrs["href"]
+        #去空格
         url = url.strip()
         url_list.append(url)
         print(url)
