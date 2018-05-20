@@ -37,6 +37,7 @@ for num in range(1,10):
 
     for name in nameList:
         url = name.a.attrs["href"]
+        #去空格
         url = url.strip()
         url_list.append(url)
         print(url)
