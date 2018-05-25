@@ -20,11 +20,15 @@ import pickle
 driver = webdriver.Chrome()
 
 driver.get("https://rent.591.com.tw")
-driver.get("https://rent.591.com.tw/?kind=2&region=1")
+driver.get("https://rent.591.com.tw/?kind=2&region=3")
+#等待，確保class有出來，但是好像沒什麼用
+wait = WebDriverWait(driver, 10)
+element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,'新北市')))
+driver.execute_script("arguments[0].click();", element)
 url_list = list()
 
 #開始分頁面抓取各租屋URL
-for num in range(1,10):
+for num in range(1,81):
     #等待兩秒，避免頁面加載不完
     time.sleep(2)
     html = driver.page_source
@@ -44,9 +48,13 @@ for num in range(1,10):
 
     
 driver.get("https://rent.591.com.tw")
-driver.get("https://rent.591.com.tw/?kind=3&region=1")
+driver.get("https://rent.591.com.tw/?kind=3&region=3")
+#等待，確保class有出來，但是好像沒什麼用
+wait = WebDriverWait(driver, 10)
+element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,'新北市')))
+driver.execute_script("arguments[0].click();", element)
 
-for num in range(1,10):
+for num in range(1,51):
     time.sleep(2)
     html = driver.page_source
     page = BeautifulSoup(html, "lxml")
@@ -62,9 +70,13 @@ for num in range(1,10):
         print(url)
 
 driver.get("https://rent.591.com.tw")
-driver.get("https://rent.591.com.tw/?kind=4&region=1")
+driver.get("https://rent.591.com.tw/?kind=4&region=3")
+#等待，確保class有出來，但是好像沒什麼用
+wait = WebDriverWait(driver, 10)
+element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,'新北市')))
+driver.execute_script("arguments[0].click();", element)
 
-for num in range(1,10):
+for num in range(1,15):
     time.sleep(2)
     html = driver.page_source
     page = BeautifulSoup(html, "lxml")
@@ -85,9 +97,9 @@ for num in range(1,10):
 #fileName = str("./data/"+"url_list_"+i+".dat")
 
 #用Pickle保存檔案
-pickle.dump(url_list, open("./data/url_list_5_20.dat", "wb"))
+pickle.dump(url_list, open("./data/url_list_5_25_NTP.dat", "wb"))
 
 #讀取
-url_list = pickle.load(open("./data/url_list_5_20.dat", "rb"))
+url_list = pickle.load(open("./data/url_list_5_25_NTP.dat", "rb"))
 
         
