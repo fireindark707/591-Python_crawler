@@ -5,13 +5,16 @@ Created on Sun May 20 17:45:36 2018
 
 @author: zhangyu
 """
+import pickle
 
-condition_text = condition_box.get_text()
-strlist = condition_text.split('：')
-yaJing = strlist[1].split('車')[0]
-cheWei = strlist[2].split('管')[0]
-guanLiFei = strlist[3].split('最')[0]
-zuiDuan = strlist[4].split('開')[0]
-kaiHuo = strlist[5].split('養')[0]
-chongWu = strlist[6].split('身')[0]
-shenFen = strlist[7].split('可')[0]
+rentDf = pickle.load(open("./data/rent_table.dat", "rb"))
+colnames = ['押金','車 位','管理費','最短租期','身份要求','開伙','養寵物','身分要求','性別要求','朝向','格局','產權登記']
+
+condition = condition_box.findAll('li')
+
+for item in condition:
+    item = item.get_text()
+    item_name = item.split('：')[0]
+    item_content = item.split('：')[1]
+    if item_name in colnames:
+        rentDf.ix[0,item_name]=item_content
