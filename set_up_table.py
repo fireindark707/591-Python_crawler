@@ -53,7 +53,8 @@ rent_dict = {
         '網絡':[1]*length,
         '第四台':[1]*length,
         '座標':[0]*length,
-        '捷運':[0]*length
+        '捷運':[0]*length,
+        '火車':[0]*length,
 }
 
 rentDf = pd.DataFrame(rent_dict)
