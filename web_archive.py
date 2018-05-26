@@ -11,8 +11,8 @@ import pickle
 from bs4 import BeautifulSoup
 import time
 
-import sys   
-sys.setrecursionlimit(1000000) #递归设置为一百万  
+import sys
+sys.setrecursionlimit(1000000)  # 遞歸設置為一百萬
 
 http = urllib3.PoolManager()
 
