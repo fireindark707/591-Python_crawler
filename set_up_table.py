@@ -27,6 +27,7 @@ rent_dict = {
         '型態':[0]*length,
         '種類':[0]*length,
         '地址':[0]*length,
+        '區':[0]*length,
         '押金':[0]*length,
         '車 位':[0]*length,
         '管理費':[0]*length,
