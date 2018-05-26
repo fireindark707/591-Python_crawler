@@ -66,7 +66,8 @@ for num in range(0, length):
                     all_floor_num = item_content.split('/')[1]
                     all_floor_num = float(all_floor_num.split('F')[0])
                     rentDf.ix[num, '總樓層數'] = all_floor_num
-                rentDf.ix[num, item_name] = item_content
+                else:
+                    rentDf.ix[num, item_name] = item_content
     
     except AttributeError:
         #print("None")
@@ -176,7 +177,8 @@ for n in range(0, length2):
                     all_floor_num = item_content.split('/')[1]
                     all_floor_num = float(all_floor_num.split('F')[0])
                     rentDf.ix[num, '總樓層數'] = all_floor_num
-                rentDf.ix[num, item_name] = item_content
+                else:
+                    rentDf.ix[num, item_name] = item_content
     
     except AttributeError:
         #print("None")
