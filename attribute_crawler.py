@@ -1,19 +1,22 @@
 import urllib3
 import pickle
 from bs4 import BeautifulSoup
-import sys   
-sys.setrecursionlimit(1000000) #递归设置为一百万  
+import sys
+
+sys.setrecursionlimit(1000000)  # 递归设置为一百万
 
 http = urllib3.PoolManager()
 
 NTP_html = pickle.load(open("./data/web_archive_5_25_NTP.dat", "rb"))
 
-TPE_html = pickle.load(open("./data/web_archive_5_25_TPE.dat", "rb"))
+# TPE_html = pickle.load(open("./data/web_archive_5_25_TPE.dat", "rb"))
 
-length = len(url_list)
+NTP_length = len(NTP_html)
 
-for i in range(0, length):
-    response = http.request('GET', url_list[i])
+# TPE_length = len(TPE_html)
+
+for i in range(0, NTP_length):
+    response = http.request('GET', NTP_html[i])
     soup = BeautifulSoup(response.data, "lxml")
 
     price_box = soup.find('div', attrs={'class': 'price clearfix'})
