@@ -1,10 +1,14 @@
 import urllib3
 import pickle
 from bs4 import BeautifulSoup
+import sys   
+sys.setrecursionlimit(1000000) #递归设置为一百万  
 
 http = urllib3.PoolManager()
 
-url_list = pickle.load(open("./data/url_list_5_20.dat", "rb"))
+NTP_html = pickle.load(open("./data/web_archive_5_25_NTP.dat", "rb"))
+
+TPE_html = pickle.load(open("./data/web_archive_5_25_TPE.dat", "rb"))
 
 length = len(url_list)
 
