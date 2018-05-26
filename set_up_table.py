@@ -35,7 +35,6 @@ rent_dict = {
         '身份要求':[0]*length,
         '開伙':[0]*length,
         '養寵物':[0]*length,
-        '身分要求':[0]*length,
         '性別要求':[0]*length,
         '朝向':[0]*length,
         '格局':[0]*length,
