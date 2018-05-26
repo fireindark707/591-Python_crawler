@@ -50,7 +50,7 @@ rent_dict = {
         '洗衣機':[1]*length,
         '椅子':[1]*length,
         '沙發':[1]*length,
-        '網絡':[1]*length,
+        '網路':[1]*length,
         '第四台':[1]*length,
         '座標':[0]*length,
         '捷運站':[0]*length,
