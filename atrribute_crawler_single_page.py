@@ -21,13 +21,11 @@ explcol = ['格局', '坪數', '樓層', '型態', '現況', '總樓層數']
 
 rentDf = pickle.load(open("./data/rent_table.dat", "rb"))
 http = urllib3.PoolManager()
-
 url_list = "https://rent.591.com.tw/rent-detail-6396035.html"
-
 response = http.request('GET', url_list)
 soup = BeautifulSoup(response.data, "lxml")
 
-print("---------------------------------------------------------------")
+print("------------------------Seperator-----------------------------")
 
 try:
     price_box = soup.find('div', attrs={'class': 'price clearfix'})
@@ -38,7 +36,6 @@ try:
     print(price_box)
 except AttributeError:
     print("None")
-
 print('\n')
 
 try:
@@ -52,15 +49,15 @@ try:
         if item_name == '坪數':
             item_content = float(item_content.split('坪')[0])
         if item_name == '樓層':
-            item_content = float(item_content.split('/')[0])
+            item_content = item_content.split('/')[0]
+            item_content = item_content.split('F')[0]
         if item_name == '總樓層數':
-            item_content = float(item_content.split('/')[1])
+            item_content = item_content.split('/')[1]
+            item_content = float(item_content.split('F')[0])
         if item_name in explcol:
             rentDf.ix[0, item_name] = item_content
-
 except AttributeError:
     print("None")
-
 print('\n')
 
 try:
@@ -72,7 +69,6 @@ try:
     print(address_box)
 except AttributeError:
     print("None")
-
 print('\n')
 
 try:
@@ -87,7 +83,6 @@ try:
             rentDf.ix[0, item_name] = item_content
 except AttributeError:
     print("None")
-
 print('\n')
 
 try:
@@ -101,7 +96,6 @@ try:
             print(facility_box[i].get_text(), ": Yes")
 except AttributeError:
     print("None")
-
 print('\n')
 
 try:
@@ -110,9 +104,7 @@ try:
     print(life_box)
 except AttributeError:
     print("None")
-
 print('\n')
 
 transportation_box()
-
 print(rentDf)
