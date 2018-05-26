@@ -9,9 +9,14 @@ Created on Sun May 20 16:55:37 2018
 import pandas as pd
 import numpy as np
 import pickle
-url_list = pickle.load(open("./data/url_list_5_20.dat", "rb"))
 
-length = len(url_list)
+
+url_TPE = pickle.load(open("./data/url_list_5_25.dat", "rb"))
+url_NTP = pickle.load(open("./data/url_list_5_25_NTP.dat", "rb"))
+
+url_TP = url_TPE + url_NTP
+
+length = len(url_TP)
 
 rent_dict = {
         '編號':[0]*length,
@@ -31,26 +36,28 @@ rent_dict = {
         '性別要求':[0]*length,
         '朝向':[0]*length,
         '格局':[0]*length,
-        '桌子':[0]*length,
-        '衣櫃':[0]*length,
-        '床':[0]*length,
-        '熱水器':[0]*length,
-        '天然瓦斯':[0]*length,
-        '電視':[0]*length,
-        '冰箱':[0]*length,
-        '冷氣':[0]*length,
-        '洗衣機':[0]*length,
-        '椅子':[0]*length,
-        '沙發':[0]*length,
-        '網絡':[0]*length,
-        '第四台':[0]*length
+        '桌子':[1]*length,
+        '衣櫃':[1]*length,
+        '床':[1]*length,
+        '熱水器':[1]*length,
+        '天然瓦斯':[1]*length,
+        '電視':[1]*length,
+        '冰箱':[1]*length,
+        '冷氣':[1]*length,
+        '洗衣機':[1]*length,
+        '椅子':[1]*length,
+        '沙發':[1]*length,
+        '網絡':[1]*length,
+        '第四台':[1]*length,
+        '座標':[0]*length,
+        '捷運':[0]*length
 }
 
 rentDf = pd.DataFrame(rent_dict)
 
 #抓取編號
 for i in range(0,length):
-    bianHao = url_list[i][30:37]
+    bianHao = url_TP[i][30:37]
     rentDf.xs(i)['編號'] = bianHao
     
-pickle.dump(url_list, open("./data/rent_table.dat", "wb"))
+pickle.dump(rentDf, open("./data/rent_table.dat", "wb"))
