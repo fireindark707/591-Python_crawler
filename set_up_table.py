@@ -35,7 +35,6 @@ rent_dict = {
         '身份要求':[0]*length,
         '開伙':[0]*length,
         '養寵物':[0]*length,
-        '身分要求':[0]*length,
         '性別要求':[0]*length,
         '朝向':[0]*length,
         '格局':[0]*length,
@@ -54,7 +53,8 @@ rent_dict = {
         '網絡':[1]*length,
         '第四台':[1]*length,
         '座標':[0]*length,
-        '捷運':[0]*length
+        '捷運站':[0]*length,
+        '火車站':[0]*length,
 }
 
 rentDf = pd.DataFrame(rent_dict)
