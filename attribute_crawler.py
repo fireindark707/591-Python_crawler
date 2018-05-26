@@ -56,15 +56,16 @@ for num in range(0, length):
             item_name = item.split('\xa0:\xa0\xa0')[0]
             item_content = item.split('\xa0:\xa0\xa0')[1]
             #print(item)
-            if item_name == '坪數':
-                item_content = float(item_content.split('坪')[0])
-            if item_name == '樓層':
-                item_content = item_content.split('/')[0]
-                item_content = item_content.split('F')[0]
-            if item_name == '總樓層數':
-                item_content = item_content.split('/')[1]
-                item_content = float(item_content.split('F')[0])
             if item_name in explcol:
+                if item_name == '坪數':
+                    item_content = float(item_content.split('坪')[0])
+                if item_name == '樓層':
+                    floor_num = item_content.split('/')[0]
+                    floor_num = floor_num.split('F')[0]
+                    rentDf.ix[num, '樓層'] = floor_num
+                    all_floor_num = item_content.split('/')[1]
+                    all_floor_num = float(all_floor_num.split('F')[0])
+                    rentDf.ix[num, '總樓層數'] = all_floor_num
                 rentDf.ix[num, item_name] = item_content
     
     except AttributeError:
@@ -165,15 +166,16 @@ for n in range(0, length2):
             item_name = item.split('\xa0:\xa0\xa0')[0]
             item_content = item.split('\xa0:\xa0\xa0')[1]
             #print(item)
-            if item_name == '坪數':
-                item_content = float(item_content.split('坪')[0])
-            if item_name == '樓層':
-                item_content = item_content.split('/')[0]
-                item_content = item_content.split('F')[0]
-            if item_name == '總樓層數':
-                item_content = item_content.split('/')[1]
-                item_content = float(item_content.split('F')[0])
             if item_name in explcol:
+                if item_name == '坪數':
+                    item_content = float(item_content.split('坪')[0])
+                if item_name == '樓層':
+                    floor_num = item_content.split('/')[0]
+                    floor_num = floor_num.split('F')[0]
+                    rentDf.ix[num, '樓層'] = floor_num
+                    all_floor_num = item_content.split('/')[1]
+                    all_floor_num = float(all_floor_num.split('F')[0])
+                    rentDf.ix[num, '總樓層數'] = all_floor_num
                 rentDf.ix[num, item_name] = item_content
     
     except AttributeError:
@@ -245,6 +247,8 @@ for n in range(0, length2):
     print(num)
     
     #print(rentDf)
+del web_archive_NTP
+gc.collect()
     
 rentDf.to_csv("./result/2018-05-25-TP-result.csv", sep='\t', encoding='utf-8')
 
