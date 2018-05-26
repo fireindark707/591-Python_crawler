@@ -2,7 +2,16 @@ import pickle
 import urllib3
 from bs4 import BeautifulSoup
 
+
+def transportation_box():
+    MRT = "捷運站"
+    TRAIN = "火車站"
+    transportation = [life_box.find(MRT), life_box.find(TRAIN)]
+    print(transportation)
+
+
 condcol = ['押金', '車 位', '管理費', '最短租期', '身份要求', '開伙', '養寵物', '身分要求', '性別要求', '朝向', '格局', '產權登記']
+explcol = ['格局', '坪數', '樓層', '型態', '現況']
 
 
 rentDf = pickle.load(open("./data/rent_table.dat", "rb"))
@@ -22,26 +31,34 @@ try:
 except AttributeError:
     print("None")
 
+print('\n')
+
 try:
     explain_box = soup.find('ul', attrs={'class': 'attr'})
     explain = explain_box.findAll('li')
-    # for item in explain:
-    #     item = item.get_text()
-    #     item_name = item.split('：')[0]
-    #     item_explain = item.split('：')[1]
-    #     print(item)
-
-    explain_box = explain_box.get_text().strip()
-    print(explain_box)
+    for item in explain:
+        item = item.get_text()
+        item_name = item.split('\xa0:\xa0\xa0')[0]
+        item_content = item.split('\xa0:\xa0\xa0')[1]
+        print(item)
+        if item_name in explcol:
+            rentDf.ix[0, item_name] = item_content
 except AttributeError:
     print("None")
+
+print('\n')
 
 try:
     address_box = soup.find('span', attrs={'class': 'addr'})
     address_box = address_box.get_text().strip()
+    rentDf.ix[0, '地址'] = address_box
+    district = address_box.split('區')[0][-2:] + '區'
+    rentDf.ix[0, '區'] = district
     print(address_box)
 except AttributeError:
     print("None")
+
+print('\n')
 
 try:
     condition_box = soup.find('ul', attrs={'class': 'clearfix labelList labelList-1'})
@@ -52,10 +69,11 @@ try:
         item_content = item.split('：')[1]
         print(item)
         if item_name in condcol:
-            rentDf.ix[0,item_name]=item_content
-
+            rentDf.ix[0, item_name] = item_content
 except AttributeError:
     print("None")
+
+print('\n')
 
 try:
     facility_box = soup.find('ul', attrs={'class': 'facility clearfix'})
@@ -70,6 +88,8 @@ try:
 except AttributeError:
     print("None")
 
+print('\n')
+
 try:
     life_box = soup.find('div', attrs={'class': 'lifeBox'})
     life_box = life_box.get_text().strip()
@@ -77,12 +97,8 @@ try:
 except AttributeError:
     print("None")
 
-
-def transportation_box():
-    MRT = "捷運站"
-    TRAIN = "火車站"
-    transportation = [life_box.find(MRT), life_box.find(TRAIN)]
-    print(transportation)
-
+print('\n')
 
 transportation_box()
+
+print(rentDf)
