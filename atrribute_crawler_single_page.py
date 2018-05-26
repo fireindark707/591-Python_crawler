@@ -57,7 +57,6 @@ try:
             item_content = float(item_content.split('/')[1])
         if item_name in explcol:
             rentDf.ix[0, item_name] = item_content
-
 except AttributeError:
     print("None")
 
