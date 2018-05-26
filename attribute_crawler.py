@@ -246,7 +246,7 @@ for n in range(0, length2):
     
     #print(rentDf)
     
-rentDf.to_csv("2018-05-25-TP-result.csv", sep='\t', encoding='utf-8')
+rentDf.to_csv("./result/2018-05-25-TP-result.csv", sep='\t', encoding='utf-8')
 
 
 
