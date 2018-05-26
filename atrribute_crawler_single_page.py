@@ -1,12 +1,17 @@
 import pickle
 import urllib3
 from bs4 import BeautifulSoup
+import re
 
 
 def transportation_box():
     MRT = "捷運站"
     TRAIN = "火車站"
     transportation = [life_box.find(MRT), life_box.find(TRAIN)]
+    if life_box.find(MRT) > 0:
+        rentDf.ix[0, MRT] = int(1)
+    if life_box.find(TRAIN) > 0:
+        rentDf.ix[0, TRAIN] = int(1)
     print(transportation)
 
 
@@ -17,7 +22,7 @@ explcol = ['格局', '坪數', '樓層', '型態', '現況', '總樓層數']
 rentDf = pickle.load(open("./data/rent_table.dat", "rb"))
 http = urllib3.PoolManager()
 
-url_list = "https://rent.591.com.tw/rent-detail-6247236.html"
+url_list = "https://rent.591.com.tw/rent-detail-6396035.html"
 
 response = http.request('GET', url_list)
 soup = BeautifulSoup(response.data, "lxml")
@@ -27,6 +32,9 @@ print("---------------------------------------------------------------")
 try:
     price_box = soup.find('div', attrs={'class': 'price clearfix'})
     price_box = price_box.get_text().strip()
+    non_decimal = re.compile(r'[^\d.]+')
+    price = non_decimal.sub('', price_box)
+    rentDf.ix[0, '價格'] = float(price)
     print(price_box)
 except AttributeError:
     print("None")
@@ -42,11 +50,11 @@ try:
         item_content = item.split('\xa0:\xa0\xa0')[1]
         print(item)
         if item_name == '坪數':
-            item_content = item_content.split('坪')[0]
+            item_content = float(item_content.split('坪')[0])
         if item_name == '樓層':
-            item_content = item_content.split('/')[0]
+            item_content = float(item_content.split('/')[0])
         if item_name == '總樓層數':
-            item_content = item_content.split('/')[1]
+            item_content = float(item_content.split('/')[1])
         if item_name in explcol:
             rentDf.ix[0, item_name] = item_content
 
@@ -86,12 +94,11 @@ try:
     facility_box = soup.find('ul', attrs={'class': 'facility clearfix'})
     facility_box = facility_box.find_all('li', class_='clearfix')
     for i in range(0, len(facility_box)):
-        li = []
         if 'no' in str(facility_box[i]):
-            print(facility_box[i].get_text())
+            print(facility_box[i].get_text(), ": No")
+            rentDf.ix[0, facility_box[i]] = 0
         else:
-            li.append(i)
-        print(li)
+            print(facility_box[i].get_text(), ": Yes")
 except AttributeError:
     print("None")
 
