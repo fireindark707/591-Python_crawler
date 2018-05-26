@@ -11,7 +11,7 @@ def transportation_box():
 
 
 condcol = ['押金', '車 位', '管理費', '最短租期', '身份要求', '開伙', '養寵物', '身分要求', '性別要求', '朝向', '格局', '產權登記']
-explcol = ['格局', '坪數', '樓層', '型態', '現況']
+explcol = ['格局', '坪數', '樓層', '型態', '現況', '總樓層數']
 
 
 rentDf = pickle.load(open("./data/rent_table.dat", "rb"))
@@ -41,8 +41,15 @@ try:
         item_name = item.split('\xa0:\xa0\xa0')[0]
         item_content = item.split('\xa0:\xa0\xa0')[1]
         print(item)
+        if item_name == '坪數':
+            item_content = item_content.split('坪')[0]
+        if item_name == '樓層':
+            item_content = item_content.split('/')[0]
+        if item_name == '總樓層數':
+            item_content = item_content.split('/')[1]
         if item_name in explcol:
             rentDf.ix[0, item_name] = item_content
+
 except AttributeError:
     print("None")
 
