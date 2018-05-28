@@ -16,7 +16,7 @@ sys.setrecursionlimit(1000000)  # 遞歸設置為一百萬
 
 http = urllib3.PoolManager()
 
-url_list = pickle.load(open("./data/url_list_5_25_NTP.dat", "rb"))
+url_list = pickle.load(open("./data/url_list_5_28_NTP.dat", "rb"))
 
 length = len(url_list)
 
@@ -30,4 +30,4 @@ for i in range(0, length):
     web_archive.append(soup)
     print(i)
 
-pickle.dump(web_archive, open("./data/web_archive_5_25_NTP.dat", "wb"))
+pickle.dump(web_archive, open("./data/web_archive_5_28_NTP.dat", "wb"))

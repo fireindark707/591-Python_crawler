@@ -18,7 +18,7 @@ def transportation_box():
     #print(transportation)
 
 
-condcol = ['押金', '車 位', '管理費', '最短租期', '身份要求', '開伙', '養寵物', '身分要求', '性別要求', '朝向', '格局', '產權登記']
+condcol = ['押金', '車 位', '管理費', '最短租期', '身份要求', '開伙', '隔間材料', '養寵物', '身分要求', '性別要求', '朝向', '格局', '產權登記']
 explcol = ['格局', '坪數', '樓層', '型態', '現況', '總樓層數']
 
 
@@ -31,7 +31,7 @@ http = urllib3.PoolManager()
 
 #response = http.request('GET', url_list)
 #soup = BeautifulSoup(response.data, "lxml")
-web_archive_TPE = pickle.load(open("./data/web_archive_5_25_TPE.dat", "rb"))
+web_archive_TPE = pickle.load(open("./data/web_archive_5_28_TPE.dat", "rb"))
 length = len(web_archive_TPE)
     
 for num in range(0, length):
@@ -141,7 +141,7 @@ for num in range(0, length):
 del web_archive_TPE
 gc.collect()
 
-web_archive_NTP = pickle.load(open("./data/web_archive_5_25_NTP.dat", "rb"))
+web_archive_NTP = pickle.load(open("./data/web_archive_5_28_NTP.dat", "rb"))
 length2 = len(web_archive_NTP)
     
 for n in range(0, length2):
@@ -252,7 +252,7 @@ for n in range(0, length2):
 del web_archive_NTP
 gc.collect()
     
-rentDf.to_csv("./result/2018-05-25-TP-result.csv", sep=',', encoding='utf-8')
+rentDf.to_csv("./result/2018-05-28-TP-result.csv", sep=',', encoding='utf-8')
 
 
 
