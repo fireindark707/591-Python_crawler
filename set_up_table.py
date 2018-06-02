@@ -11,8 +11,8 @@ import pandas as pd
 import pickle
 
 
-url_TPE = pickle.load(open("./data/url_list_5_25.dat", "rb"))
-url_NTP = pickle.load(open("./data/url_list_5_25_NTP.dat", "rb"))
+url_TPE = pickle.load(open("./data/url_list_5_28_TPE.dat", "rb"))
+url_NTP = pickle.load(open("./data/url_list_5_28_NTP.dat", "rb"))
 
 url_TP = url_TPE + url_NTP
 
@@ -37,6 +37,7 @@ rent_dict = {
     '養寵物': [0] * length,
     '性別要求': [0] * length,
     '朝向': [0] * length,
+    '隔間材料': [0] * length,
     '格局': [0] * length,
     '產權登記': [0] * length,
     '桌子': [1] * length,
