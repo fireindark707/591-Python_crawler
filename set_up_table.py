@@ -11,8 +11,8 @@ import pandas as pd
 import pickle
 
 
-url_TPE = pickle.load(open("./data/url_list_5_28_TPE.dat", "rb"))
-url_NTP = pickle.load(open("./data/url_list_5_28_NTP.dat", "rb"))
+url_TPE = pickle.load(open("./data/url_list_6_01_TPE.dat", "rb"))
+url_NTP = pickle.load(open("./data/url_list_6_01_NTP.dat", "rb"))
 
 url_TP = url_TPE + url_NTP
 

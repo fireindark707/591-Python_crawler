@@ -29,7 +29,7 @@ driver.execute_script("arguments[0].click();", element)
 url_list = list()
 
 # 開始分頁面抓取各租屋URL
-for num in range(1, 77):
+for num in range(1, 79):
     # 等待兩秒，避免頁面加載不完
     time.sleep(2)
     html = driver.page_source
@@ -54,7 +54,7 @@ wait = WebDriverWait(driver, 10)
 element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, '新北市')))
 driver.execute_script("arguments[0].click();", element)
 
-for num in range(1, 51):
+for num in range(1, 52):
     time.sleep(2)
     html = driver.page_source
     page = BeautifulSoup(html, "lxml")
@@ -97,7 +97,7 @@ for num in range(1, 15):
 # fileName = str("./data/"+"url_list_"+i+".dat")
 
 # 用Pickle保存檔案
-pickle.dump(url_list, open("./data/url_list_5_28_NTP.dat", "wb"))
+pickle.dump(url_list, open("./data/url_list_6_01_NTP.dat", "wb"))
 
 # 讀取
 #url_list = pickle.load(open("./data/url_list_5_25_NTP.dat", "rb"))
