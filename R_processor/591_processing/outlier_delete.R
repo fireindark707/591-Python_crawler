@@ -47,7 +47,10 @@ yaFang_no_outlier <- outlier_by_rent(yaFang)
 #plot(duLiTao_no_outlier$總價格,duLiTao_no_outlier$坪數)
 #plot(yaFang_no_outlier$總價格,yaFang_no_outlier$坪數)
 
+TP_result_6_1 <- rbind(fenZuTao_no_outlier,duLiTao_no_outlier,yaFang_no_outlier)
+
 write.arff(fenZuTao_no_outlier,file = "./result/fenzuTao_6_1.arff")
 write.arff(duLiTao_no_outlier,file = "./result/duLiTao_6_1.arff")
 write.arff(yaFang_no_outlier,file = "./result/yaFang_6_1.arff")
+write.arff(TP_result_6_1,file="./result/TP_result_6_1.arff")
 
