@@ -60,4 +60,5 @@ write.csv2(fenZuTao_no_outlier,file="./result/fenZuTao_6_1_v3.csv")
 
 write.csv2(TP_result_6_1,file="./result/TP_result_6_1_v3.csv")
 
+save(TP_result_6_1,file = "./result/TP_result_6_1_v3.Rdata")
 
